@@ -1,0 +1,271 @@
+.announcement-container {
+    position: relative;
+    z-index: 120;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &--active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.announcement-bar {
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    transition: opacity 0.3s ease, height 0.3s ease, transform 0.3s ease;
+
+    &--hiding {
+        opacity: 0;
+        height: 0;
+        transform: translateY(-100%);
+    }
+
+    .container {
+        height: 100%;
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        gap: var(--space-md);
+    }
+
+    &__spacer {
+        width: 32px;
+        flex-shrink: 0;
+
+        @media (max-width: 640px) {
+            display: none;
+        }
+    }
+
+    &__center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 0;
+
+        @media (max-width: 640px) {
+            justify-content: flex-start;
+            padding-right: 40px;
+        }
+    }
+
+    &__badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+
+        svg {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 640px) {
+            display: none;
+        }
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        font-size: 13px;
+
+        @media (max-width: 640px) {
+            font-size: 12px;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+        }
+    }
+
+    &__text {
+        font-weight: 500;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (max-width: 640px) {
+            white-space: normal;
+            overflow: visible;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__separator {
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 400;
+
+        @media (max-width: 640px) {
+            display: none;
+        }
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        flex-shrink: 0;
+
+        &:hover {
+            color: #fff;
+
+            .announcement-bar__arrow {
+                transform: translateX(2px);
+            }
+        }
+    }
+
+    &__arrow {
+        font-size: 12px;
+        transition: transform 0.2s ease;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+
+        @media (max-width: 640px) {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    &__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        svg {
+            font-size: 14px;
+        }
+    }
+
+    // Color variants - using accent color from settings
+    &--info {
+        background: linear-gradient(90deg, 
+            color-mix(in srgb, var(--info) 60%, #1e1b4b) 0%, 
+            color-mix(in srgb, var(--info) 60%, #312e81) 50%, 
+            color-mix(in srgb, var(--info) 60%, #1e1b4b) 100%
+        );
+
+        .announcement-bar__badge svg {
+            color: color-mix(in srgb, var(--info), #fff 40%);
+        }
+
+        .announcement-bar__link {
+            color: color-mix(in srgb, var(--info), #fff 60%);
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    &--success {
+        background: linear-gradient(90deg, 
+            color-mix(in srgb, var(--success) 50%, #052e16) 0%, 
+            color-mix(in srgb, var(--success) 50%, #14532d) 50%, 
+            color-mix(in srgb, var(--success) 50%, #052e16) 100%
+        );
+
+        .announcement-bar__badge svg {
+            color: color-mix(in srgb, var(--success), #fff 40%);
+        }
+
+        .announcement-bar__link {
+            color: color-mix(in srgb, var(--success), #fff 50%);
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    &--warning {
+        background: linear-gradient(90deg, 
+            color-mix(in srgb, var(--warning) 40%, #422006) 0%, 
+            color-mix(in srgb, var(--warning) 40%, #713f12) 50%, 
+            color-mix(in srgb, var(--warning) 40%, #422006) 100%
+        );
+
+        .announcement-bar__badge svg {
+            color: color-mix(in srgb, var(--warning), #fff 30%);
+        }
+
+        .announcement-bar__link {
+            color: color-mix(in srgb, var(--warning), #fff 40%);
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+
+    &--error {
+        background: linear-gradient(90deg, 
+            color-mix(in srgb, var(--error) 50%, #450a0a) 0%, 
+            color-mix(in srgb, var(--error) 50%, #7f1d1d) 50%, 
+            color-mix(in srgb, var(--error) 50%, #450a0a) 100%
+        );
+
+        .announcement-bar__badge svg {
+            color: color-mix(in srgb, var(--error), #fff 40%);
+        }
+
+        .announcement-bar__link {
+            color: color-mix(in srgb, var(--error), #fff 50%);
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}

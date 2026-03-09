@@ -1,0 +1,18 @@
+.announcement-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    .announcement-type {
+        .badge {
+            font-size: 11px;
+            padding: 2px 8px;
+        }
+    }
+
+    .announcement-content {
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--text-200);
+    }
+}

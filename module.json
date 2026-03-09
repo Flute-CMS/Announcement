@@ -1,0 +1,8 @@
+{
+    "name": "Announcement",
+    "version": "1.0.0",
+    "description": "Module for displaying announcements in the top part of the site",
+    "authors": ["Flames"],
+    "providers": ["Flute\\Modules\\Announcement\\Providers\\AnnouncementProvider"],
+    "dependencies": {}
+}
