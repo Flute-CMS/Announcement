@@ -22,6 +22,9 @@ class Announcement extends ActiveRecord
     #[Column(type: 'primary')]
     public int $id;
 
+    #[Column(type: 'string', nullable: true)]
+    public ?string $title = null;
+
     #[Column(type: 'text')]
     public string $content;
 
@@ -34,8 +37,32 @@ class Announcement extends ActiveRecord
     #[Column(type: 'string', nullable: true)]
     public ?string $buttonIcon = null;
 
+    #[Column(type: 'string', default: 'primary')]
+    public string $buttonStyle = 'primary';
+
     #[Column(type: 'boolean', default: false)]
     public bool $buttonNewTab = false;
+
+    #[Column(type: 'string', nullable: true)]
+    public ?string $secondaryButtonText = null;
+
+    #[Column(type: 'string', nullable: true)]
+    public ?string $secondaryButtonUrl = null;
+
+    #[Column(type: 'string', nullable: true)]
+    public ?string $secondaryButtonIcon = null;
+
+    #[Column(type: 'string', default: 'outline')]
+    public string $secondaryButtonStyle = 'outline';
+
+    #[Column(type: 'boolean', default: false)]
+    public bool $secondaryButtonNewTab = false;
+
+    #[Column(type: 'boolean', default: false)]
+    public bool $showTimer = false;
+
+    #[Column(type: 'datetime', nullable: true)]
+    public ?DateTimeImmutable $timerAt = null;
 
     #[Column(type: 'string', nullable: true)]
     public ?string $icon = null;
