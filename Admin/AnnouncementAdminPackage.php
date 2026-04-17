@@ -15,6 +15,8 @@ class AnnouncementAdminPackage extends AbstractAdminPackage
 
         $this->loadRoutesFromFile('routes.php');
 
+        $this->loadViews('Resources/views', 'admin-announcement');
+
         $this->loadTranslations('Resources/lang');
 
         $this->registerScss('Resources/assets/sass/announcement.scss');
